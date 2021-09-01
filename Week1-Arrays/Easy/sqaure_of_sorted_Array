@@ -1,0 +1,20 @@
+class Solution {
+public:
+    vector<int> sortedSquares(vector<int>& nums) {
+        int n = nums.size()-1;
+        vector<int> res(n+1);
+        int l=0,r=n;
+        while(l<=r){
+            if(abs(nums[l]) < abs(nums[r])){
+                res[n] =nums[r]*nums[r];
+                r--;
+            }else{
+                res[n] =nums[l]*nums[l];
+                l++;
+            }
+            // cout<<res[n]<<" ";
+            n--;
+       }
+        return res;
+    }
+};
