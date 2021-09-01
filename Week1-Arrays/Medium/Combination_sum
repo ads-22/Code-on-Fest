@@ -1,0 +1,28 @@
+class Solution {
+public:
+    void sum(vector<int> &A, int B, vector<vector<int>>& v,vector<int>& res,int idx){
+        if(B < 0)
+            return;
+        if(B==0){
+            v.push_back(res);
+            return;
+        }
+        for(int i = idx; i<A.size(); i++) {
+            // if(i > idx && A[i] ==A[i-1])
+            //     continue;
+            res.push_back(A[i]);
+            sum(A,B-A[i],v,res,i);
+            res.pop_back();
+            // idx++;
+        }
+    }
+    vector<vector<int>> combinationSum(vector<int>& A, int B) {
+        vector<vector<int>> v;
+        sort(A.begin(),A.end());
+        A.erase(unique(A.begin(), A.end()), A.end());
+        vector<int> res;
+        int idx=0;
+        sum(A,B,v,res,idx);
+        return v;
+    }
+};

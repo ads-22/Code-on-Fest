@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int maxScore(vector<int>& cardPoints, int k) {
+        int lsum=0,rsum=0;
+        int ans=0,n=cardPoints.size();
+        for(int i=0;i<k;i++){
+            lsum+=cardPoints[i];
+        }
+        ans=lsum;
+        for(int i=0;i<k;i++){
+            rsum+=cardPoints[n-i-1];
+            lsum-=cardPoints[k-i-1];
+            ans = max(lsum+rsum,ans);
+        }
+        return ans;
+    }
+};
